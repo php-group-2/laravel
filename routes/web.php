@@ -21,22 +21,22 @@ Route::redirect('/', '/home');
 Route::get(
     '/home',
     fn () => view('home', ['links' => $links, 'name' => 'home'])
-);
+)->name('home');
 
 Route::get(
     '/about',
     fn () => view('about', ['links' => $links, 'name' => 'about'])
-);
+)->name('about');
 
 Route::get(
     '/contact',
     fn () => view('contact', ['links' => $links, 'name' => 'contact'])
-);
+)->name('contact');
 
 Route::get(
     '/dashboard',
     fn () => view('dashboard', ['links' => $links, 'name' => 'dashboard'])
-);
+)->name('dashboard');
 
 /*
 Route::redirect('/', '/home');
