@@ -48,9 +48,28 @@ Route::get('/example/{a}/{b}/{c}', function ($a, $b, $c) {
     throw new NotFoundHttpException;
 });
 
+/*
+/users/{id}      =>   id has to be numeric.
+/posts/{title}   =>   title has to alphabit.
+/images/{size}   => size has to be one of sm, md, lg, xl, 2xl values.
+/call/to/{phone} => phone has to be a valid iran phone number. (start by 0)
+*/
 
+Route::get('/users/{id}', function ($id) {
+    return 'User ' . $id;
+})->whereNumber('id');
 
+Route::get('/posts/{title}', function ($title) {
+    return 'Posts ' . $title;
+})->whereAlpha('title');
 
+Route::get('/images/{size}', function ($size) {
+    return 'Image size: ' . $size;
+})->whereIn('size', ['sm', 'md', 'lg', 'xl', '2xl']);
+
+Route::get('/call/to/{phone}', function ($phone) {
+    return 'Phone: ' . $phone;
+})->where('phone', '(?:0|\+98)?9\d{9}');
 
 /*
 Route::redirect('/', '/home');
