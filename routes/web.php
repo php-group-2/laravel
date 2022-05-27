@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -98,10 +99,22 @@ Route::get('/admin/{id}', function ($id, $name = null) {
 // });
  */
 
-Route::get('users/{id}', function($id) {
-    return "this page is profile for user $id";
-})->whereNumber('id');
+Route::prefix('users')->group(function () {
+    Route::get('/{id}', function ($id) {
+        return "this page is profile for user $id";
+    })->whereNumber('id');
 
-Route::get('users/list', function() {
-    return "this page will show all users, imagine the list";
+    Route::get('/list', function () {
+        return "this page will show all users, imagine the list";
+    });
 });
+
+// Route::resource('/post', PostController::class);
+
+// Route::get('users/{id}', function ($id) {
+//     return "this page is profile for user $id";
+// })->whereNumber('id');
+
+// Route::get('users/list', function () {
+//     return "this page will show all users, imagine the list";
+// });
