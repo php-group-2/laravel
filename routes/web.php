@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,19 @@ Route::get(
     '/dashboard',
     fn () => view('dashboard', ['links' => $links, 'name' => 'dashboard'])
 )->name('dashboard');
+
+// Solution 1
+Route::get('/example/{a}/{b}/{c}', function ($a, $b, $c) {
+    if (is_numeric($a) && is_numeric($b) && is_numeric($c))
+        return $a + $b + $c;
+    if (!is_numeric($a) && !is_numeric($b) && !is_numeric($c))
+        return $a . ' ' . $b . ' ' . $c;
+    throw new NotFoundHttpException;
+});
+
+
+
+
 
 /*
 Route::redirect('/', '/home');
