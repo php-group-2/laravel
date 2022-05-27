@@ -97,3 +97,11 @@ Route::get('/admin/{id}', function ($id, $name = null) {
 //         ->header('Content-Type', 'text/plain');
 // });
  */
+
+Route::get('users/{id}', function($id) {
+    return "this page is profile for user $id";
+})->whereNumber('id');
+
+Route::get('users/list', function() {
+    return "this page will show all users, imagine the list";
+});
