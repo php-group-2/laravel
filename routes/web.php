@@ -18,7 +18,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $links = ['home', 'about', 'contact', 'dashboard'];
 
-Route::redirect('/', '/home');
+// Route::redirect('/', '/home');
+
+Route::get('/', function () use ($links) {
+    return view('test', ['links' => $links, 'siteName' => 'Laravel']);
+});
 
 Route::get(
     '/home',
